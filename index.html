@@ -3,118 +3,105 @@
 <head>
 	<meta charset = "utf-8">
 	<title>localsaver</title>
-	<style type="text/css">
-	.body{
-		position: relative;
-	}
-	.profile_pic{
-		position: absolute;
-		top: -145px;
-		left: 40px;
-		border: 5px solid white;
-		border-radius: 10px;
-	}
-	.category{
-		margin-left: 275px;
-		font-family: sans-serif;
-		font-size: 26px;
-		font-weight: bold;
-	}
-	.business_name{
-		margin-left: 40px;
-		margin-top: 20px;
-		width: 620px;
-		height: 120px;
-		border-radius: 10px;
-		color: white;
-		background-color: blue;
-		font-size: 26px;
-		font-family: sans-serif;
-		font-weight: bold;
-	}
-	</style>
+	<link rel="stylesheet" type="text/css" href="./style.css">
 </head>
 <body>
-	<div class = 'header'>
-		<div class = 'local_saver_logo'>
-			<img src="http://content.secondspace.com/frontend-test/localsaver-logo.png">
-		</div>
-		<div class = 'title'>
-			<p>Fun</p>
-		</div>
-		<div class = 'matches_found'>
-		</div>
-	</div>
-	<div id = 'main_content'>
-		<div class = 'business'>
-			<div class = 'loaction'>
-				<ul>
-					<li>Bellevue, WA</li>
-					<li>3.3 mi</li>
-				</ul>
+	<div id = "wrapper">
+		<div class = 'header'>
+			<div class = 'localsaver_logo'>
+				<img src="http://content.secondspace.com/frontend-test/localsaver-logo.png">
 			</div>
-			<img class = 'title_pic' src="http://content.secondspace.com/frontend-test/tile1-main.jpg">
-			<div class = 'body'>
-				<img class = 'profile_pic' src="http://content.secondspace.com/frontend-test/tile1-logo.jpg">
-				<p class = 'category'>Category</p>
-				<button class = 'business_name'>Sound Nourishment Nutritional Consulting</button>
-				<hr>
-				<div class = 'coupon_area'>
-					<p class = 'coupon'>20% off Regular Price for Cash-Paying Clients</p>
-					<span class = 'next_carrot'>></span>
-				</div>
-				<hr>
-				<div class = 'coupon_area'>
-					<p class = 'coupon'>Refer a friend, Get 25% Off Next Visit</p>
-					<span class = 'next_carrot'>></span>
-				</div>
+			<div class = 'title'>
+				<p>Coupons & Deals near You</p>
+			</div>
+			<div class = 'matches_found'>
+				<p>+3,600 MATCHES FOUND</p>
 			</div>
 		</div>
-		<div class = 'business'>
-			<div class = 'loaction'>
-				<ul>
-					<li>Bellevue, WA</li>
-					<li>3.3 mi</li>
-				</ul>
-			</div>
-			<img class = 'title_pic' src="">
-			<div class = 'body'>
-				<img class = 'profile_pic' src="">
-				<p class = 'category'>Category</p>
-				<button class = 'business_name'>Sound Nourishment Nutritional Consulting</button>
-				<hr>
-				<div class = 'coupon_area'>
-					<p class = 'coupon'>20% off Regular Price for Cash-Paying Clients</p>
-					<span class = 'next_carrot'>></span>
+		<div id = 'main_content'>
+			<div class = 'business'>
+				<div class = 'location'>
+					<ul>
+						<li><img src="http://content.secondspace.com/frontend-test/pin.png"></li>
+						<li>Bellevue, WA</li>
+						<li>3.3 mi</li>
+					</ul>
 				</div>
-				<hr>
-				<div class = 'coupon_area'>
-					<p class = 'coupon'>Refer a friend, Get 25% Off Next Visit</p>
-					<span class = 'next_carrot'>></span>
+				<img class = 'title_pic' src="http://content.secondspace.com/frontend-test/tile1-main.jpg">
+				<div class = 'body'>
+					<img class = 'profile_pic' src="http://content.secondspace.com/frontend-test/tile1-logo.jpg">
+					<p class = 'category'>Nutritionists</p>
+					<button class = 'business_button'>
+						Sound Nourishment Nutritional Consulting
+					</button>
+					<div class = 'coupon_area'>
+						<hr>
+						<p class = 'coupon'>20% off Regular Price for Cash-Paying Clients</p>
+						<img src="./arrow.png">
+					</div>
+					<div class = 'coupon_area'>
+						<hr>
+						<p class = 'coupon'>Refer a Friend, Get 25% Off Next Visit</p>
+						<img src="./arrow.png">
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class = 'business'>
-			<div class = 'loaction'>
-				<ul>
-					<li>Bellevue, WA</li>
-					<li>3.3 mi</li>
-				</ul>
-			</div>
-			<img class = 'title_pic' src="">
-			<div class = 'body'>
-				<img class = 'profile_pic' src="">
-				<p class = 'category'>Category</p>
-				<button class = 'business_name'>Sound Nourishment Nutritional Consulting</button>
-				<hr>
-				<div class = 'coupon_area'>
-					<p class = 'coupon'>20% off Regular Price for Cash-Paying Clients</p>
-					<span class = 'next_carrot'>></span>
+			<div class = 'business'>
+				<div class = 'location'>
+					<ul>
+						<li><img src="http://content.secondspace.com/frontend-test/pin.png"></li>
+						<li>Seattle, WA</li>
+						<li>12.9 mi</li>
+					</ul>
 				</div>
-				<hr>
-				<div class = 'coupon_area'>
-					<p class = 'coupon'>Refer a friend, Get 25% Off Next Visit</p>
-					<span class = 'next_carrot'>></span>
+				<img class = 'title_pic' src="http://content.secondspace.com/frontend-test/tile2-main.jpg">
+				<div class = 'body'>
+					<img class = 'profile_pic' src="http://content.secondspace.com/frontend-test/tile2-logo.jpg">
+					<p class = 'category'>Indian Restaurants</p>
+					<button class = 'business_button'>
+						Maharaja Cuisine of India
+					</button>
+					<div class = 'coupon_area'>
+						<hr>
+						<p class = 'coupon'>$15 certificate for $6<br> A 60% Savings</p>
+						<img src="./arrow.png">
+					</div>
+					<div class = 'coupon_area'>
+						<hr>
+						<p class = 'coupon'>$25 certificate for $10<br> A 60% Savings!</p>
+						<img src="./arrow.png">
+					</div>
+					<div class = 'coupon_area'>
+						<hr>
+						<p class = 'more_coupons'>See All <span class = 'color_circle'>4</span></p>
+					</div>
+				</div>
+			</div>
+			<div class = 'business'>
+				<div class = 'location'>
+					<ul>
+						<li><img src="http://content.secondspace.com/frontend-test/pin.png"></li>
+						<li>Seattle, WA</li>
+						<li>8.4 mi</li>
+					</ul>
+				</div>
+				<img class = 'title_pic' src="http://content.secondspace.com/frontend-test/tile3-main.jpg">
+				<div class = 'body'>
+					<img class = 'profile_pic' src="http://content.secondspace.com/frontend-test/tile3-logo.jpg">
+					<p class = 'category'>Toy Store</p>
+					<button class = 'business_button'>
+						Toys R Us
+					</button>
+					<div class = 'coupon_area'>
+						<hr>
+						<p class = 'coupon'>15% OFF all Bathtubs & Bath Accessories</p>
+						<img src="./arrow.png">
+					</div>
+					<div class = 'coupon_area'>
+						<hr>
+						<p class = 'coupon'>20% OFF all Humidifiers Vaporizers & Air Purifiers</p>
+						<img src="./arrow.png">
+					</div>
 				</div>
 			</div>
 		</div>
