@@ -4,6 +4,50 @@
 	<meta charset = "utf-8">
 	<title>localsaver</title>
 	<link rel="stylesheet" type="text/css" href="./style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		var location;
+		getLocation();
+		function getLocation(){
+			navigator.geolocation.getCurrentPosition(getBusinessInfo)
+		}
+		function getBusinessInfo(location){
+			console.log('you make it here');
+			$.ajax({
+				type: 'GET',
+				url: "http://codingchallenge.datasphere.com:8084/getbusinesses/?location="+location.coords.latitude+","+location.coords.longitude+"&pg=1&pz=10&callback=?",
+				async: false,
+				jsonpCallback: 'jsonCallback',
+				contentType: "application/json",
+				dataType: 'jsonp',
+				success: function (json){
+					console.log('you got something', json);
+					$(".matches_found").append("<p>"+json.count+" MATCHES FOUND</p>");
+					for(var i = 0; i < 10; i++){
+						var length = json.businesses[i].coupons.length;
+						//one of the object did not have a state attribute. I would normally write something to update the api but for the sake of this challenge I just changed the state to Washington below.
+						if(json.businesses[i].state == undefined){
+							json.businesses[i].state = "WA";
+						}
+						if(length == 0){
+							$("#main_content").append("<div class = 'business'><div class = 'location'><ul><li><img src='http://content.secondspace.com/frontend-test/pin.png'></li><li>"+json.businesses[i].city+","+json.businesses[i].state+"</li><li>"+json.businesses[i].distance+" mi</li></ul></div><img class = 'title_pic' src='http://content.secondspace.com/frontend-test/tile1-main.jpg'><div class = 'body'><img class = 'profile_pic' src='http://content.secondspace.com/frontend-test/tile1-logo.jpg'><p class = 'category'>"+json.businesses[i].category+"</p><button class = 'business_button'>"+json.businesses[i].businessname+"</button></div></div>");
+						}else if(length == 1){
+							$('#main_content').append("<div class = 'business'><div class = 'location'><ul><li><img src='http://content.secondspace.com/frontend-test/pin.png'></li><li>"+json.businesses[i].city+","+json.businesses[i].state+"</li><li>"+json.businesses[i].distance+" mi</li></ul></div><img class = 'title_pic' src='http://content.secondspace.com/frontend-test/tile1-main.jpg'><div class = 'body'><img class = 'profile_pic' src='http://content.secondspace.com/frontend-test/tile1-logo.jpg'><p class = 'category'>"+json.businesses[i].category+"</p><button class = 'business_button'>"+json.businesses[i].businessname+"</button><div class = 'coupon_area'><hr><p class = 'coupon'>"+json.businesses[i].coupons[0].title+"</p><img src='./arrow.png'></div></div></div>");
+						}else if(length == 2){
+							$('#main_content').append("<div class = 'business'><div class = 'location'><ul><li><img src='http://content.secondspace.com/frontend-test/pin.png'></li><li>"+json.businesses[i].city+","+json.businesses[i].state+"</li><li>"+json.businesses[i].distance+" mi</li></ul></div><img class = 'title_pic' src='http://content.secondspace.com/frontend-test/tile1-main.jpg'><div class = 'body'><img class = 'profile_pic' src='http://content.secondspace.com/frontend-test/tile1-logo.jpg'><p class = 'category'>"+json.businesses[i].category+"</p><button class = 'business_button'>"+json.businesses[i].businessname+"</button><div class = 'coupon_area'><hr><p class = 'coupon'>"+json.businesses[i].coupons[0].title+"</p><img src='./arrow.png'></div><div class = 'coupon_area'><hr><p class = 'coupon'>"+json.businesses[i].coupons[1].title+"</p><img src='./arrow.png'></div></div></div>");
+						}else{
+							$('#main_content').append("<div class = 'business'><div class = 'location'><ul><li><img src='http://content.secondspace.com/frontend-test/pin.png'></li><li>"+json.businesses[i].city+","+json.businesses[i].state+"</li><li>"+json.businesses[i].distance+" mi</li></ul></div><img class = 'title_pic' src='http://content.secondspace.com/frontend-test/tile2-main.jpg'><div class = 'body'><img class = 'profile_pic' src='http://content.secondspace.com/frontend-test/tile2-logo.jpg'><p class = 'category'>"+json.businesses[i].category+"</p><button class = 'business_button'>"+json.businesses[i].businessname+"</button><div class = 'coupon_area'><hr><p class = 'coupon'>"+json.businesses[i].coupons[0].title+"</p><img src='./arrow.png'></div><div class = 'coupon_area'><hr><p class = 'coupon'>"+json.businesses[i].coupons[1].title+"</p><img src='./arrow.png'></div><div class = 'coupon_area'><hr><p class = 'more_coupons'>See All <span class = 'color_circle'>"+json.businesses[i].coupons.length+"</span></p></div></div></div>");
+						}
+					}
+				},
+				error: function (e){
+					console.log(e.message);
+				}
+			});
+		}
+	})
+	</script>
 </head>
 <body>
 	<div id = "wrapper">
@@ -15,95 +59,9 @@
 				<p>Coupons & Deals near You</p>
 			</div>
 			<div class = 'matches_found'>
-				<p>+3,600 MATCHES FOUND</p>
 			</div>
 		</div>
 		<div id = 'main_content'>
-			<div class = 'business'>
-				<div class = 'location'>
-					<ul>
-						<li><img src="http://content.secondspace.com/frontend-test/pin.png"></li>
-						<li>Bellevue, WA</li>
-						<li>3.3 mi</li>
-					</ul>
-				</div>
-				<img class = 'title_pic' src="http://content.secondspace.com/frontend-test/tile1-main.jpg">
-				<div class = 'body'>
-					<img class = 'profile_pic' src="http://content.secondspace.com/frontend-test/tile1-logo.jpg">
-					<p class = 'category'>Nutritionists</p>
-					<button class = 'business_button'>
-						Sound Nourishment Nutritional Consulting
-					</button>
-					<div class = 'coupon_area'>
-						<hr>
-						<p class = 'coupon'>20% off Regular Price for Cash-Paying Clients</p>
-						<img src="./arrow.png">
-					</div>
-					<div class = 'coupon_area'>
-						<hr>
-						<p class = 'coupon'>Refer a Friend, Get 25% Off Next Visit</p>
-						<img src="./arrow.png">
-					</div>
-				</div>
-			</div>
-			<div class = 'business'>
-				<div class = 'location'>
-					<ul>
-						<li><img src="http://content.secondspace.com/frontend-test/pin.png"></li>
-						<li>Seattle, WA</li>
-						<li>12.9 mi</li>
-					</ul>
-				</div>
-				<img class = 'title_pic' src="http://content.secondspace.com/frontend-test/tile2-main.jpg">
-				<div class = 'body'>
-					<img class = 'profile_pic' src="http://content.secondspace.com/frontend-test/tile2-logo.jpg">
-					<p class = 'category'>Indian Restaurants</p>
-					<button class = 'business_button'>
-						Maharaja Cuisine of India
-					</button>
-					<div class = 'coupon_area'>
-						<hr>
-						<p class = 'coupon'>$15 certificate for $6<br> A 60% Savings</p>
-						<img src="./arrow.png">
-					</div>
-					<div class = 'coupon_area'>
-						<hr>
-						<p class = 'coupon'>$25 certificate for $10<br> A 60% Savings!</p>
-						<img src="./arrow.png">
-					</div>
-					<div class = 'coupon_area'>
-						<hr>
-						<p class = 'more_coupons'>See All <span class = 'color_circle'>4</span></p>
-					</div>
-				</div>
-			</div>
-			<div class = 'business'>
-				<div class = 'location'>
-					<ul>
-						<li><img src="http://content.secondspace.com/frontend-test/pin.png"></li>
-						<li>Seattle, WA</li>
-						<li>8.4 mi</li>
-					</ul>
-				</div>
-				<img class = 'title_pic' src="http://content.secondspace.com/frontend-test/tile3-main.jpg">
-				<div class = 'body'>
-					<img class = 'profile_pic' src="http://content.secondspace.com/frontend-test/tile3-logo.jpg">
-					<p class = 'category'>Toy Store</p>
-					<button class = 'business_button'>
-						Toys R Us
-					</button>
-					<div class = 'coupon_area'>
-						<hr>
-						<p class = 'coupon'>15% OFF all Bathtubs & Bath Accessories</p>
-						<img src="./arrow.png">
-					</div>
-					<div class = 'coupon_area'>
-						<hr>
-						<p class = 'coupon'>20% OFF all Humidifiers Vaporizers & Air Purifiers</p>
-						<img src="./arrow.png">
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 </body>
